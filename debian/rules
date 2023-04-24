@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+SERVICE = bluetooth-ssh.service
+
+%:
+	dh $@
+
+override_dh_installsystemd:
+	dh_installsystemd --name $(SERVICE:.service=)
