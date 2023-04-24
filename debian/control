@@ -1,0 +1,19 @@
+Source: bthelper
+Section: utils
+Priority: optional
+Maintainer: unknown <pi@>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.1.3
+Homepage: https://github.com/ThomasHabets/bthelper
+Vcs-Git: git://github.com/ThomasHabets/bthelper
+Vcs-Browser: https://github.com/ThomasHabets/bthelper
+
+
+Package: bthelper
+Section: utils
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends} 
+Description: Helper program to SSH over bluetooth - runtime
+  This can be a useful second way in in case you have a
+  raspberry pi with broken network or firewall config.

@@ -1,0 +1,15 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: bthelper
+Upstream-Contact: https://blog.habets.se/
+Source: https://github.com/twojstaryzdomu/bthelper
+Comment:
+ Helper program to SSH over bluetooth
+ .
+ This can be a useful second way in in case you have a
+ raspberry pi with broken network or firewall config.
+
+Files: *
+Copyright:
+  2022, ThomasHabets, <ThomasHabets@users.noreply.github.com>
+  2023, twojstaryzdomu, <twojstaryzdomu@users.noreply.github.com>
+License: Apache-2.0
