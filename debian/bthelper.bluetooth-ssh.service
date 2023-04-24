@@ -1,7 +1,7 @@
 [Unit]
 Description=Bluetooth ssh
 After=hciuart.service bluetooth.service
-Requires=bluetooth.service
+BindsTo=hciuart.service bluetooth.service
 
 [Service]
 ExecStart=/usr/bin/bt-listener -c 2 -t 127.0.0.1:22
