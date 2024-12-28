@@ -1,0 +1,14 @@
+[Unit]
+Description=Bluetooth console
+After=bluetooth.service
+Wants=bluetooth.service
+PartOf=bluetooth.service
+
+[Service]
+ExecStart=/usr/bin/bt-listener -c 3 -e -- /sbin/agetty '{}' -o -p -E -H '{addr}' -- linux --noclear
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=0
+
+[Install]
+WantedBy=multi-user.target

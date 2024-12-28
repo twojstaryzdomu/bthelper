@@ -4,16 +4,18 @@
 %define         minor 0
 %define         build_timestamp %(date +"%Y%m%d")
 %define         branch main
-%define         systemd_service bluetooth-ssh.service
+%define         console_service bluetooth-console.service
+%define         ssh_service bluetooth-ssh.service
 Name:           %{gitname}
 Version:        %{major}.%{minor}~git_%{branch}
 Release:        %{build_timestamp}
 Group:          System/Management
 Summary:        Helper program to SSH over bluetooth
 License:        Apache-2.0
-URL:            https://github.com/twojstaryzdomu/%{gitname}
+URL:            https://github.com/ThomasHabets/%{gitname}
 Source:         %{url}/archive/refs/heads/%{branch}.zip
-Source1:        %systemd_service
+Source1:        %console_service
+Source2:        %ssh_service
 %systemd_requires
 
 %description
@@ -29,24 +31,27 @@ raspberry pi with broken network or firewall config.
 %make_build
 
 %install
-install -D -m 0644 %{_sourcedir}/%{systemd_service} %{buildroot}%{_unitdir}/%{systemd_service}
+for service in console_service ssh_service; do
+  install -D -m 0644 %{_sourcedir}/%{service} %{buildroot}%{_unitdir}/%{service}
+done
 %make_install
 
 %pre
-%service_add_pre %systemd_service
+%service_add_pre %console_service %ssh_service
 
 %post
-%service_add_post %systemd_service
+%service_add_post %console_service %ssh_service
 
 %preun
-%service_del_preun %systemd_service
+%service_del_preun %console_service %ssh_service
 
 %postun
-%service_del_postun %systemd_service
+%service_del_postun %console_service %ssh_service
 
 %files
 /usr/bin/*
-%{_unitdir}/%{systemd_service}
+%{_unitdir}/%{console_service}
+%{_unitdir}/%{ssh_service}
 %license LICENSE
 %doc README.md
 
